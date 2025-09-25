@@ -16,7 +16,6 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 import process from 'process';
 
-// JWT Strategy
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET
@@ -26,7 +25,7 @@ passport.use(new JwtStrategy({
     console.log("JWT PAYLOAD:", jwt_payload);
 
     const user = await User.findById(jwt_payload.id);
-    console.log("👤 USER FOUND:", user);
+    console.log("USER FOUND:", user);
 
     if (user) {
       return done(null, user);
@@ -38,8 +37,6 @@ passport.use(new JwtStrategy({
   }
 }));
 
-
-// Local Strategy
 passport.use(new LocalStrategy({
   usernameField: 'email'
 }, async (email, password, done) => {
@@ -60,7 +57,6 @@ passport.use(new LocalStrategy({
   }
 }));
 
-// Google Strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -93,7 +89,6 @@ passport.use(new GoogleStrategy({
   }
 }));
 
-// GitHub Strategy
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
