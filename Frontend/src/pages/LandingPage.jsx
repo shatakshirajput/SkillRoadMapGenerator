@@ -132,36 +132,8 @@ const LandingPage = () => {
               >
                 Generate Your Roadmap
               </button>
-              <a
-                href="#pricing"
-                className="px-8 py-4 rounded-full border border-slate-300 bg-white text-slate-700 font-semibold text-lg hover:bg-slate-50"
-              >
-                See Pricing
-              </a>
             </motion.div>
-
-            {/* Trusted Logos */}
-            <div className="mt-12 text-slate-500 text-sm">
-              Trusted by <span className="font-semibold text-slate-700">10,000+ developers</span>
-            </div>
-
-            {/* Circular Overlapping Avatars */}
-            <div className="mt-4 flex justify-center lg:justify-start">
-              {[
-                "https://i.pravatar.cc/40?img=1",
-                "https://i.pravatar.cc/40?img=2",
-                "https://i.pravatar.cc/40?img=3",
-                "https://i.pravatar.cc/40?img=4",
-                "https://i.pravatar.cc/40?img=5",
-              ].map((avatar, i) => (
-                <img
-                  key={i}
-                  src={avatar}
-                  alt={`Trusted user ${i + 1}`}
-                  className={`w-10 h-10 rounded-full border-2 border-white shadow-sm ${i !== 0 ? '-ml-3' : ''}`}
-                />
-              ))}
-            </div>
+                
           </div>
 
           {/* Hero Mockup Right */}
