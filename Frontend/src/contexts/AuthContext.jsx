@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
     const initAuth = async () => {
       const token = localStorage.getItem('token');
       
-      // Check for token in URL (OAuth callback)
       const urlParams = new URLSearchParams(window.location.search);
       const urlToken = urlParams.get('token');
       

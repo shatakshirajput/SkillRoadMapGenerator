@@ -26,7 +26,6 @@ const Dashboard = () => {
       const data = await roadmapsAPI.getAll();
       setRoadmaps(data);
 
-      // Calculate stats
       const totalRoadmaps = data.length;
       const totalProgress = data.reduce((sum, roadmap) => sum + roadmap.progress, 0);
       const avgProgress = totalRoadmaps > 0 ? Math.round(totalProgress / totalRoadmaps) : 0;

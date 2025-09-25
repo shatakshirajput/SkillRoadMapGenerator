@@ -37,12 +37,6 @@ const LandingPage = () => {
     { icon: Users, title: "Multiple Roadmaps", description: "Manage different paths and track progress seamlessly." },
   ];
 
-  // const techStacks = [
-  //   "JavaScript", "Python", "React", "Node.js", "AWS",
-  //   "Docker", "TypeScript", "Vue", "Django", "PostgreSQL",
-  //   "Kubernetes", "MongoDB",
-  // ];
-
   const faqs = [
     { q: "What is Roadmap Generator?", a: "It’s an AI-powered tool that creates structured learning paths tailored to your goals, skills, and experience." },
     { q: "Is it free to use?", a: "We offer a free plan with limited features. Premium plans unlock advanced AI customization and detailed analytics." },

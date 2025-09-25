@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
-      {/* ================= MOBILE / TABLET SIDEBAR ================= */}
+      {/*MOBILE / TABLET SIDEBAR*/}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -117,7 +117,7 @@ const Layout = ({ children }) => {
         )}
       </AnimatePresence>
 
-      {/* ================= DESKTOP SIDEBAR ================= */}
+      {/*DESKTOP SIDEBAR*/}
       {/* collapsed static bar */}
       <div className="hidden lg:flex flex-col fixed inset-y-0 left-0 w-[72px] bg-white border-r border-slate-200 shadow-md z-30">
         <div className="flex items-center justify-center h-16">
@@ -157,7 +157,6 @@ const Layout = ({ children }) => {
         </div>
       </div>
 
-      {/* overlay expanded desktop sidebar */}
       <AnimatePresence>
         {desktopExpanded && (
           <>
@@ -231,7 +230,7 @@ const Layout = ({ children }) => {
         )}
       </AnimatePresence>
 
-      {/* ================= MAIN CONTENT ================= */}
+      {/*MAIN CONTENT*/}
       <div className="flex-1 lg:ml-[72px]">
         <header className="bg-white shadow-sm border-b border-slate-200 lg:hidden">
           <div className="flex items-center justify-between px-4 py-3">

@@ -7,7 +7,6 @@ import { authenticateJWT } from '../middleware/auth.js';
 import process from 'process';
 const router = express.Router();
 
-// Generate JWT Token
 const generateToken = (userId) => {
   return jwt.sign(
     { id: userId }, 
@@ -16,22 +15,18 @@ const generateToken = (userId) => {
   );
 };
 
-// Register
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if user exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
-    // Create user
     const user = new User({
       name,
       email,
@@ -57,18 +52,14 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    // Find user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Check password
     const isMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
@@ -90,7 +81,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Get current user
 router.get('/me', authenticateJWT, async (req, res) => {
   try {
     res.json({
@@ -106,7 +96,6 @@ router.get('/me', authenticateJWT, async (req, res) => {
   }
 });
 
-// Google OAuth
 router.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
@@ -115,7 +104,7 @@ router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
     const token = generateToken(req.user._id);
-    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}?token=${token}`);
+    res.redirect(`${process.env.CLIENT_URL || 'https://skill-road-map-generator.vercel.app/'}?token=${token}`);
   }
 );
 
@@ -128,7 +117,7 @@ router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   (req, res) => {
     const token = generateToken(req.user._id);
-    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}?token=${token}`);
+    res.redirect(`${process.env.CLIENT_URL || 'https://skill-road-map-generator.vercel.app/'}?token=${token}`);
   }
 );
 

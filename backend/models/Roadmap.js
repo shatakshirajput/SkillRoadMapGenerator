@@ -92,8 +92,6 @@ const RoadmapSchema = new mongoose.Schema({
 
 RoadmapSchema.pre('save', function(next) {
   this.updatedAt = new Date();
-  
-  // Calculate total topics and progress
   let totalTopics = 0;
   let completedTopics = 0;
   

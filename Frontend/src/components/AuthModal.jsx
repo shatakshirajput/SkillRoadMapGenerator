@@ -47,7 +47,7 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }) => {
   };
 
   const handleOAuthLogin = (provider) => {
-    window.location.href = `http://localhost:3000/api/auth/${provider}`;
+    window.location.href = `https://skillroadmapgenerator.onrender.com/api/auth/${provider}`;
   };
 
   if (!isOpen) return null;

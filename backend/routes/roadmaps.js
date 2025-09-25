@@ -6,12 +6,10 @@ import { authenticateJWT } from '../middleware/auth.js';
 import process from 'process';
 const router = express.Router();
 
-// Generate roadmap with Gemini AI
 router.post('/generate', authenticateJWT, async (req, res) => {
   try {
     const { roadmapName, skillLevel, includeProjects, techStack } = req.body;
 
-    // Construct prompt for Gemini
     const prompt = `You are an expert software engineering learning assistant.
 Generate a structured learning roadmap for a user with the following inputs:
 - Roadmap Name: ${roadmapName}
@@ -49,7 +47,6 @@ Return a JSON response in this exact format:
 
 Make sure to provide practical, real-world resources like documentation links, tutorials, and courses. Keep the roadmap comprehensive but achievable for the specified skill level.`;
 
-    // Call Gemini API
     const geminiResponse = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
@@ -68,7 +65,6 @@ Make sure to provide practical, real-world resources like documentation links, t
 
     let geminiText = geminiResponse.data.candidates[0].content.parts[0].text;
     
-    // Extract JSON from response
     const jsonMatch = geminiText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       throw new Error('Invalid response from AI');
@@ -76,7 +72,6 @@ Make sure to provide practical, real-world resources like documentation links, t
 
     const roadmapData = JSON.parse(jsonMatch[0]);
 
-    // Create roadmap in database
     const roadmap = new Roadmap({
       title: roadmapData.title,
       description: roadmapData.description,
@@ -90,7 +85,6 @@ Make sure to provide practical, real-world resources like documentation links, t
 
     await roadmap.save();
 
-    // Add to user's roadmaps
     await User.findByIdAndUpdate(req.user._id, {
       $push: { roadmaps: roadmap._id }
     });
@@ -105,7 +99,6 @@ Make sure to provide practical, real-world resources like documentation links, t
   }
 });
 
-// Get user's roadmaps
 router.get('/', authenticateJWT, async (req, res) => {
   try {
     const roadmaps = await Roadmap.find({ createdBy: req.user._id })
@@ -117,7 +110,6 @@ router.get('/', authenticateJWT, async (req, res) => {
   }
 });
 
-// Get specific roadmap
 router.get('/:id', authenticateJWT, async (req, res) => {
   try {
     const roadmap = await Roadmap.findOne({
@@ -135,7 +127,6 @@ router.get('/:id', authenticateJWT, async (req, res) => {
   }
 });
 
-// Update topic completion
 router.patch('/:roadmapId/topics/:topicId/complete', authenticateJWT, async (req, res) => {
   try {
     const { roadmapId, topicId } = req.params;
@@ -150,7 +141,6 @@ router.patch('/:roadmapId/topics/:topicId/complete', authenticateJWT, async (req
       return res.status(404).json({ message: 'Roadmap not found' });
     }
 
-    // Find and update topic
     let topicFound = false;
     roadmap.stages.forEach(stage => {
       stage.topics.forEach(topic => {
@@ -173,7 +163,6 @@ router.patch('/:roadmapId/topics/:topicId/complete', authenticateJWT, async (req
   }
 });
 
-// Delete roadmap
 router.delete('/:id', authenticateJWT, async (req, res) => {
   try {
     const roadmap = await Roadmap.findOneAndDelete({
@@ -185,7 +174,6 @@ router.delete('/:id', authenticateJWT, async (req, res) => {
       return res.status(404).json({ message: 'Roadmap not found' });
     }
 
-    // Remove from user's roadmaps
     await User.findByIdAndUpdate(req.user._id, {
       $pull: { roadmaps: req.params.id }
     });

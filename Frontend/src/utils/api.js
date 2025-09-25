@@ -9,7 +9,6 @@ const api = axios.create({
   },
 });
 
-// Add auth token to requests
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -19,7 +18,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Auth API
 export const authAPI = {
   login: async (email, password) => {
     const response = await api.post('/auth/login', { email, password });
@@ -37,7 +35,6 @@ export const authAPI = {
   }
 };
 
-// Roadmaps API
 export const roadmapsAPI = {
   generate: async (roadmapData) => {
     const response = await api.post('/roadmaps/generate', roadmapData);
