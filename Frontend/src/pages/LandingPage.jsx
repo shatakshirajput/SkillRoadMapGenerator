@@ -239,52 +239,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-slate-600 text-lg">Start free, upgrade when you’re ready.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-4">Free</h3>
-              <p className="text-slate-600 mb-6">For hobbyists exploring learning paths.</p>
-              <p className="text-4xl font-bold mb-6">$0</p>
-              <ul className="text-sm text-slate-600 space-y-2 mb-6">
-                <li>✅ 1 Roadmap</li>
-                <li>✅ Basic Resources</li>
-                <li>✅ Progress Tracking</li>
-              </ul>
-              <button onClick={() => openAuthModal("register")} className="w-full py-3 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 text-white font-semibold">Get Started</button>
-            </div>
-            <div className="p-8 border-2 border-blue-600 rounded-2xl shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Pro</h3>
-              <p className="text-slate-600 mb-6">For serious learners and professionals.</p>
-              <p className="text-4xl font-bold mb-6">$12<span className="text-lg text-slate-500">/mo</span></p>
-              <ul className="text-sm text-slate-600 space-y-2 mb-6">
-                <li>✅ Unlimited Roadmaps</li>
-                <li>✅ Advanced AI Guidance</li>
-                <li>✅ Analytics & Tracking</li>
-                <li>✅ Priority Support</li>
-              </ul>
-              <button onClick={() => openAuthModal("register")} className="w-full py-3 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 text-white font-semibold">Upgrade Now</button>
-            </div>
-            <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-4">Team</h3>
-              <p className="text-slate-600 mb-6">For startups and learning groups.</p>
-              <p className="text-4xl font-bold mb-6">$29<span className="text-lg text-slate-500">/mo</span></p>
-              <ul className="text-sm text-slate-600 space-y-2 mb-6">
-                <li>✅ Team Collaboration</li>
-                <li>✅ Shared Roadmaps</li>
-                <li>✅ Custom Integrations</li>
-              </ul>
-              <button onClick={() => openAuthModal("register")} className="w-full py-3 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 text-white font-semibold">Contact Sales</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section id="faq" className="py-24 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
