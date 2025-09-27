@@ -150,7 +150,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-
       {/* FEATURES */}
       <section id="features" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -312,7 +311,6 @@ const LandingPage = () => {
           © {new Date().getFullYear()} Roadmap Generator. Built with ❤️ by your team.<br /> All rights reserved.
         </div>
       </footer>
-
 
       {/* AUTH MODAL */}
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} mode={authMode} />
