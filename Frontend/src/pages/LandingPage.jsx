@@ -66,7 +66,7 @@ const LandingPage = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
-            {["Features", "Preview", "Pricing", "FAQ", "Testimonials"].map((section) => (
+            {["Features", "Preview", "FAQ", "Testimonials"].map((section) => (
               <a key={section} href={`#${section.toLowerCase()}`} className="hover:text-blue-600 transition-colors">{section}</a>
             ))}
           </nav>
